@@ -1,1 +1,12 @@
-pipeline 
+pipeline {
+    agent {
+        label "worker"
+    }
+    stages {
+        stage('checkout') {
+            git 'https://github.com/ajaydeore-29/student-management.git'
+            echo "clonning is successful"
+        }
+    }
+}
+           
