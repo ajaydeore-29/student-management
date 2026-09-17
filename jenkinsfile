@@ -23,6 +23,11 @@ pipeline {
                 mvn clean package
                 '''
             }
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+                }
+            }
         }
 
         stage('artifact to s3') {
