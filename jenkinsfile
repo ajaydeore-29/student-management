@@ -4,9 +4,10 @@ pipeline {
     }
     stages {
         stage('checkout') {
-            git 'https://github.com/ajaydeore-29/student-management.git'
-            echo "clonning is successful"
+            steps {
+                git 'https://github.com/ajaydeore-29/student-management.git'
+                echo "clonning is successful"
+            }
         }
     }
 }
-           
