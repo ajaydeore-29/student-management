@@ -35,5 +35,21 @@ pipeline {
                 sh 'aws s3 cp target/*.war s3://ajay-bkt-jenkins-1234/Artifacts/student.war'
             }
         }
+
+        stage('sonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 }
